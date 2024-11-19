@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>TrioPixel Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <meta name="viewport" content="width=device-width,user-scalable=no" />
+    <div id="container">
+      <div id="game"></div>
+      <div id="score">0</div>
+      <div id="instructions">Klik atau tekan untuk menempatkan blok</div>
+      <div class="game-over">
+        <h2>ANDA CUPU KAMI SENANG 😈</h2>
+        <h3>Ayoo coba lagi!</h3>
+      </div>
+      <div class="game-ready">
+        <div id="start-button">TOWER BLOCK</div>
+        <div></div>
+      </div>
+    </div>
+    <audio id="background-music" loop>
+      <source src="musik.mp3" type="audio/mp3" />
+    </audio>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const backgroundMusic = document.getElementById("background-music");
+
+        const tryPlayAudio = async () => {
+          try {
+            await backgroundMusic.play();
+            console.log("Musik berhasil diputar otomatis.");
+          } catch (error) {
+            console.log("Autoplay dicegah, menunggu interaksi pengguna...");
+          }
+        };
+
+        tryPlayAudio();
+
+        document.body.addEventListener("click", () => {
+          if (backgroundMusic.paused) {
+            backgroundMusic
+              .play()
+              .then(() => {
+                console.log("Musik mulai diputar setelah interaksi pengguna.");
+              })
+              .catch((error) => {
+                console.error("Gagal memutar musik:", error);
+              });
+          }
+        });
+      });
+    </script>
+    <!-- partial -->
+    <script src="https://codepen.io/ste-vg/pen/zBVaZw.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
